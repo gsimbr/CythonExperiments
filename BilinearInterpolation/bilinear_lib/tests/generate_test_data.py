@@ -1,6 +1,7 @@
 import random
 import time
 import numpy as np
+import matplotlib.pyplot as plt
 
 from bilinear_python import bilinear_interpolation_pure_python
 from bilinear import bilinear_interpolation_mixed_cython, \
@@ -56,12 +57,22 @@ def main(test_case, iterations):
         total += end - start
 
     print "Mean: {}s".format(np.mean(times))
-    print "Min: {}s".format(np.mean(times))
-    print "Max: {}s".format(np.mean(times))
+    print "Min: {:.16}s".format(np.min(times))
+    print "Max: {:.16}s".format(np.max(times))
     print "Total:  {}s for {} iterations".format(total, iterations)
+
+    return times, res
 
 
 if __name__ == '__main__':
-    test_case = 2
-    iterations = 1000000
-    main(test_case, iterations)
+    iterations = int(1e6)
+    data = np.zeros((iterations, 4), dtype=float)
+    for case in range(1, 5):
+        times, _ = main(case, iterations)
+        data[:, case-1] = times
+
+    plt.figure()
+    plt.boxplot(data)
+    my_max = np.max(data)
+    plt.ylim((-my_max, 1.3*my_max))
+    plt.show()
