@@ -1,4 +1,4 @@
 .idea
-*.c
+bilinear.c
 *.so
 *.o

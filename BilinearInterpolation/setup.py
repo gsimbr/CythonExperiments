@@ -1,4 +1,4 @@
-from distutils.core import setup
+from distutils.core import setup, Extension
 from Cython.Build import cythonize
 
 requires = [
@@ -11,7 +11,8 @@ requires = [
 
 
 setup(
-    name='BilinearInterpolation',
+    name='Bilinear',
     requires=requires,
-    ext_modules=cythonize("bilinear_lib/*.pyx"),
+    ext_modules=cythonize(
+        "bilinear_lib/*.pyx", "bilinear_lib/bilinear_extern.c"),
 )

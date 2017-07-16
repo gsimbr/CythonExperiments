@@ -3,7 +3,8 @@ import time
 import numpy as np
 
 from bilinear_python import bilinear_interpolation_pure_python
-from bilinear import bilinear_interpolation_mixed_cython
+from bilinear import bilinear_interpolation_mixed_cython, \
+    python_bilinear_cython_wrapper, python_bilinear_c_wrapper
 
 
 def generate_data(factor=5):
@@ -39,6 +40,16 @@ def main(test_case, iterations):
             res = bilinear_interpolation_mixed_cython(
                 q11, q12, q21, q22, x1, x2, y1, y2, x, y)
             end = time.time()
+        elif test_case == 3:
+            start = time.time()
+            res = python_bilinear_cython_wrapper(
+                q11, q12, q21, q22, x1, x2, y1, y2, x, y)
+            end = time.time()
+        elif test_case == 4:
+            start = time.time()
+            res = python_bilinear_c_wrapper(
+                q11, q12, q21, q22, x1, x2, y1, y2, x, y)
+            end = time.time()
         else:
             raise NotImplementedError
         times[i] = end - start
@@ -52,5 +63,5 @@ def main(test_case, iterations):
 
 if __name__ == '__main__':
     test_case = 2
-    iterations = 100000
+    iterations = 1000000
     main(test_case, iterations)
