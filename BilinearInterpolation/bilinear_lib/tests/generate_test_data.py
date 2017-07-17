@@ -29,6 +29,7 @@ def generate_data(factor=5):
 def main(test_case, iterations):
     times = np.zeros(iterations)
     total = 0
+    res = None
     for i in range(iterations):
         q11, q12, q21, q22, x1, x2, y1, y2, x, y = generate_data()
         if test_case == 1:
@@ -67,12 +68,25 @@ def main(test_case, iterations):
 if __name__ == '__main__':
     iterations = int(1e6)
     data = np.zeros((iterations, 4), dtype=float)
+
+    ref_data, _ = main(1, iterations)
+    ref_data = np.mean(ref_data)
+    best_case = 1
+    best_data = ref_data
+
     for case in range(1, 5):
         times, _ = main(case, iterations)
         data[:, case-1] = times
+        if np.mean(times) < ref_data:
+            best_case = case
+            best_data = np.mean(times)
+
+    print "Best case {}: {} Percent of Pure Python implementation".format(
+        best_case, best_data/ref_data*100)
 
     plt.figure()
     plt.boxplot(data)
     my_max = np.max(data)
     plt.ylim((-my_max, 1.3*my_max))
     plt.show()
+
