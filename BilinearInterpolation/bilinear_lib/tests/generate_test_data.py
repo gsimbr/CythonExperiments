@@ -3,8 +3,8 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from bilinear_python import bilinear_interpolation_pure_python
-from bilinear import bilinear_interpolation_mixed_cython, \
+from bilinear_lib.bilinear_python import bilinear_interpolation_pure_python
+from bilinear_lib.bilinear import bilinear_interpolation_mixed_cython, \
     python_bilinear_cython_wrapper, python_bilinear_c_wrapper
 
 

@@ -15,4 +15,7 @@ setup(
     requires=requires,
     ext_modules=cythonize(
         "bilinear_lib/*.pyx", "bilinear_lib/bilinear_extern.c"),
+    package_data={
+        'bilinear_lib': ['*.pxd'],
+        'bilinear_lib/tests': ['*.pxd']}
 )

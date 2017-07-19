@@ -1,6 +1,6 @@
-from bilinear_cython_header cimport BilinearInterpolation
+from . bilinear_cython_header cimport BilinearInterpolation
 
-cdef bilinear_interpolation_c_cython(
+cdef double bilinear_interpolation_c_cython(
         double q11, double q12, double q21, double q22, double x1, double x2,
         double y1, double y2, double x, double y):
     cdef double x2x1, y2y1, x2x, y2y, yy1, xx1
@@ -31,7 +31,7 @@ def python_bilinear_c_wrapper(
         q11, q12, q21, q22,  x1,  x2, y1, y2, x, y)
 
 
-cpdef bilinear_interpolation_mixed_cython(
+cpdef double bilinear_interpolation_mixed_cython(
         double q11, double q12, double q21, double q22, double x1, double x2,
         double y1, double y2, double x, double y):
     cdef double x2x1, y2y1, x2x, y2y, yy1, xx1

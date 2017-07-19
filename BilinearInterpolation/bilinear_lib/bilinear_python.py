@@ -1,5 +1,3 @@
-
-
 def bilinear_interpolation_pure_python(
         q11, q12, q21, q22,  x1,  x2,
         y1, y2, x, y):
