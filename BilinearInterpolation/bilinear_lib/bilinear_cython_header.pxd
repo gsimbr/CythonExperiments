@@ -1,3 +1,8 @@
+"""
+This definition file imports external pure C code to make it cimportable in
+Cython.
+"""
+
 cdef extern from "bilinear_extern.c":
     double BilinearInterpolation(
     double q11, double q12, double q21, double q22, double x1, double x2,
