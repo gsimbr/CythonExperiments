@@ -3,3 +3,4 @@ bilinear.c
 *.so
 *.o
 test_helper.c
+build/
